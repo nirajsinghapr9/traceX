@@ -13,7 +13,7 @@
         android:stateListAnimator="@null">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/btn_asset_photo"
+        android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -23,7 +23,7 @@
         android:src="@drawable/ic_fab" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/messages"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="451dp"
         android:layout_weight="1"
