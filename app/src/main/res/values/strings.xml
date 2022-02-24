@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">traceXAssesment</string>
+    <string name="saved">Data Saved</string>
+    <string name="validEmail">Please enter valid email</string>
 </resources>

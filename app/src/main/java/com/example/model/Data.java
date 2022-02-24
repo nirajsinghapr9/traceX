@@ -2,11 +2,13 @@ package com.example.model;
 
 public class Data {
 
+    private String id;
     private String name;
     private String email;
     private String phone;
 
-    public Data(String name, String email, String phone) {
+    public Data(String id, String name, String email, String phone) {
+        this.id=id;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -15,6 +17,14 @@ public class Data {
 
     public Data() {
 
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

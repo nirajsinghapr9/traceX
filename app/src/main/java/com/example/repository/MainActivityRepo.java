@@ -34,6 +34,8 @@ public class MainActivityRepo {
 
     public void setData(Data data) {
         databaseReference = FirebaseDatabase.getInstance().getReference("data");
-        databaseReference.setValue(data);
+        String key = databaseReference.push().getKey();
+        data.setId(key);
+        databaseReference.child(key).setValue(data);
     }
 }
