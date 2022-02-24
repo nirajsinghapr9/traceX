@@ -5,7 +5,9 @@
       <map>
         <entry key="..\:/Assignments and Practices/traceXAssesment/app/src/main/res/drawable/ic_fab.xml" value="0.1645" />
         <entry key="..\:/Assignments and Practices/traceXAssesment/app/src/main/res/drawable/shape_oval.xml" value="0.1645" />
+        <entry key="..\:/Assignments and Practices/traceXAssesment/app/src/main/res/drawable/textview_background.xml" value="0.1645" />
         <entry key="..\:/Assignments and Practices/traceXAssesment/app/src/main/res/layout/activity_main.xml" value="0.24615384615384617" />
+        <entry key="..\:/Assignments and Practices/traceXAssesment/app/src/main/res/layout/dialog_form.xml" value="0.25" />
         <entry key="..\:/Assignments and Practices/traceXAssesment/app/src/main/res/layout/item_recylerview.xml" value="0.25" />
       </map>
     </option>

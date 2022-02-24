@@ -3,16 +3,19 @@ package com.example.repository;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.model.Data;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivityRepo {
+    private DatabaseReference databaseReference;
 
     private static MainActivityRepo instance;
     private ArrayList<Data> data= new ArrayList<>();
 
-    private static MainActivityRepo getInstance(){
+    public static MainActivityRepo getInstance(){
         if(instance==null){
             instance=new MainActivityRepo();
         }
@@ -27,5 +30,10 @@ public class MainActivityRepo {
     }
 
     private void fetchData() {
+    }
+
+    public void setData(Data data) {
+        databaseReference = FirebaseDatabase.getInstance().getReference("data");
+        databaseReference.setValue(data);
     }
 }
