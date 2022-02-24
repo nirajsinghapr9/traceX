@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "258724114299",
+    "firebase_url": "https://tracex-55244-default-rtdb.firebaseio.com",
+    "project_id": "tracex-55244",
+    "storage_bucket": "tracex-55244.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:258724114299:android:15c37a1a8a124d979b17de",
+        "android_client_info": {
+          "package_name": "com.example.tracexassesment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "258724114299-hommprn2otb4ar1c6v4lmfsu9pap0ca8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8rFnxG6E-8ruAxlsGSyJHoxTxtz9DmYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "258724114299-hommprn2otb4ar1c6v4lmfsu9pap0ca8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
