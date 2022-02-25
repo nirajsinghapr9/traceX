@@ -26,7 +26,7 @@ import com.example.viewModel.MainActivityViewModel;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainAdapter.ClickListener {
+public class MainActivity extends AppCompatActivity implements MainAdapter.ClickListener, DataLoadListener {
 
     private ActivityMainBinding mDataBinding;
     private MainAdapter adapter;
@@ -38,27 +38,22 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
         mDataBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
-        viewModel.init();
-        viewModel.getData().observe(this, new Observer<List<Data>>() {
-            @Override
-            public void onChanged(List<Data> data) {
-                adapter.notifyDataSetChanged();
-            }
-        });
+        viewModel.init(this);
 
         initAdapter();
 
         mDataBinding.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openDailogue();
+                Data data = new Data();
+                openDailogue(0, data);
             }
         });
 
     }
 
 
-    private void openDailogue() {
+    private void openDailogue(int flag, Data data) {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_form);
 
@@ -68,6 +63,16 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
         RelativeLayout layout = (RelativeLayout) dialog.findViewById(R.id.layout);
 
         Button dialogButton = (Button) dialog.findViewById(R.id.save);
+
+        if (flag == 1) {
+            etName.setText(data.getName());
+            etName.setEnabled(false);
+            etEmail.setText(data.getEmail());
+            etEmail.setEnabled(false);
+            etPhone.setText(data.getPhone());
+            etPhone.setEnabled(false);
+            dialogButton.setVisibility(View.GONE);
+        }
 
         layout.setOnClickListener(view -> hideKeyboard(MainActivity.this));
 
@@ -176,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
 
     @Override
     public void onClickViewOrder(int position, Data data) {
+        openDailogue(1, data);
 
     }
 
@@ -186,5 +192,15 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
             view = new View(activity);
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    @Override
+    public void onDataLoaded() {
+        viewModel.getData().observe(this, new Observer<List<Data>>() {
+            @Override
+            public void onChanged(List<Data> data) {
+                adapter.notifyDataSetChanged();
+            }
+        });
     }
 }

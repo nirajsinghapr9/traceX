@@ -1,10 +1,13 @@
 package com.example.repository;
 
+import android.content.Context;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.model.Data;
+import com.example.tracexassesment.DataLoadListener;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,11 +23,15 @@ public class MainActivityRepo {
 
     private static MainActivityRepo instance;
     private ArrayList<Data> data= new ArrayList<>();
+    private static Context mContext;
+    private static DataLoadListener dataLoadListener;
 
-    public static MainActivityRepo getInstance(){
+    public static MainActivityRepo getInstance(Context context){
+        mContext=context;
         if(instance==null){
             instance=new MainActivityRepo();
         }
+        dataLoadListener= (DataLoadListener) mContext;
         return instance;
     }
 
@@ -42,9 +49,9 @@ public class MainActivityRepo {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 data.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                    Data data1= dataSnapshot.getValue(Data.class);
-                    data.add(data1);
+                    data.add(dataSnapshot.getValue(Data.class));
                 }
+                dataLoadListener.onDataLoaded();
             }
 
             @Override

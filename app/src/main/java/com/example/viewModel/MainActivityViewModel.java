@@ -1,5 +1,7 @@
 package com.example.viewModel;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -14,11 +16,11 @@ public class MainActivityViewModel extends ViewModel {
     private MutableLiveData<List<Data>> mutableLiveData;
     private MainActivityRepo mainActivityRepo;
 
-    public void init() {
+    public void init(Context context) {
         if (mutableLiveData != null) {
             return;
         }
-        mainActivityRepo = MainActivityRepo.getInstance();
+        mainActivityRepo = MainActivityRepo.getInstance(context);
         mutableLiveData = mainActivityRepo.getData();
     }
 

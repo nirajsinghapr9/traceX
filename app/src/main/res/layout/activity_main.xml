@@ -7,7 +7,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:stateListAnimator="@null">
+        android:stateListAnimator="@null"
+        android:layout_marginTop="10dp">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btnAdd"
@@ -17,7 +18,8 @@
             android:layout_alignParentBottom="true"
             android:layout_gravity="end|bottom"
             android:layout_margin="16dp"
-            android:src="@drawable/ic_fab" />
+            android:src="@drawable/ic_fab"
+            android:backgroundTint="@color/teal_700"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
