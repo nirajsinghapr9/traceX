@@ -42,12 +42,9 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
 
         initAdapter();
 
-        mDataBinding.btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Data data = new Data();
-                openDailogue(0, data);
-            }
+        mDataBinding.btnAdd.setOnClickListener(view -> {
+            Data data = new Data();
+            openDailogue(0, data);
         });
     }
 
@@ -56,12 +53,12 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_form);
 
-        EditText etName = (EditText) dialog.findViewById(R.id.name);
-        EditText etEmail = (EditText) dialog.findViewById(R.id.email);
-        EditText etPhone = (EditText) dialog.findViewById(R.id.contact);
-        RelativeLayout layout = (RelativeLayout) dialog.findViewById(R.id.layout);
+        EditText etName = dialog.findViewById(R.id.name);
+        EditText etEmail = dialog.findViewById(R.id.email);
+        EditText etPhone = dialog.findViewById(R.id.contact);
+        RelativeLayout layout = dialog.findViewById(R.id.layout);
 
-        Button dialogButton = (Button) dialog.findViewById(R.id.save);
+        Button dialogButton = dialog.findViewById(R.id.save);
 
         if (flag == 1) {
             etName.setText(data.getName());
