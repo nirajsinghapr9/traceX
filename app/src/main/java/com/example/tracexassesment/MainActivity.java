@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
                 openDailogue(0, data);
             }
         });
-
     }
 
 
@@ -101,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
 
             }
         });
+
         etEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
                 return true;
             }
         });
+
         dialog.show();
         Display display = ((WindowManager) getSystemService(this.WINDOW_SERVICE)).getDefaultDisplay();
         int width = display.getWidth();
@@ -176,13 +177,11 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
         adapter.setOnClickListener(this);
         mDataBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDataBinding.recyclerView.setAdapter(adapter);
-
     }
 
     @Override
     public void onClickViewOrder(int position, Data data) {
         openDailogue(1, data);
-
     }
 
     public static void hideKeyboard(Activity activity) {
