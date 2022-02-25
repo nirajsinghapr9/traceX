@@ -2,7 +2,6 @@ package com.example.tracexassesment;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,11 +16,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.model.Data;
 import com.example.tracexassesment.databinding.ActivityMainBinding;
 import com.example.viewModel.MainActivityViewModel;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements MainAdapter.ClickListener {
 
@@ -36,7 +39,13 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         viewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
         viewModel.init();
-        viewModel.getData().observe(this, data -> adapter.setList(data));
+        viewModel.getData().observe(this, new Observer<List<Data>>() {
+            @Override
+            public void onChanged(List<Data> data) {
+                adapter.notifyDataSetChanged();
+            }
+        });
+
         initAdapter();
 
         mDataBinding.btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
 
     }
 
+
     private void openDailogue() {
         Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_form);
@@ -55,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
         EditText etName = (EditText) dialog.findViewById(R.id.name);
         EditText etEmail = (EditText) dialog.findViewById(R.id.email);
         EditText etPhone = (EditText) dialog.findViewById(R.id.contact);
-        RelativeLayout layout= (RelativeLayout) dialog.findViewById(R.id.layout);
+        RelativeLayout layout = (RelativeLayout) dialog.findViewById(R.id.layout);
 
         Button dialogButton = (Button) dialog.findViewById(R.id.save);
 
@@ -157,8 +167,9 @@ public class MainActivity extends AppCompatActivity implements MainAdapter.Click
 
 
     private void initAdapter() {
-        adapter = new MainAdapter(this);
+        adapter = new MainAdapter(this, viewModel.getData().getValue());
         adapter.setOnClickListener(this);
+        mDataBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDataBinding.recyclerView.setAdapter(adapter);
 
     }

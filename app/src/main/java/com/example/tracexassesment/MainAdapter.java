@@ -17,6 +17,7 @@ import com.example.model.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -28,17 +29,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
     private Context context;
     private MainAdapter.ClickListener clickListener;
 
-    public MainAdapter(Context context) {
+    public MainAdapter(Context context,List<Data> data) {
+        this.list=data;
         this.context = context;
     }
 
     public void setOnClickListener(MainAdapter.ClickListener clickListener) {
         this.clickListener = clickListener;
-    }
-
-    public void setList(List<Data> data) {
-        this.list = data;
-        notifyDataSetChanged();
     }
 
 
@@ -53,10 +50,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MainAdapter.MyViewHolder holder, int position) {
         Data data = list.get(position);
-        holder.icon.setText(list.get(position).getName().substring(0, 1));
+        holder.icon.setText(list.get(position).getName().substring(0, 1).toUpperCase(Locale.ROOT));
         Random mRandom = new Random();
         int color = Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
         ((GradientDrawable) holder.icon.getBackground()).setColor(color);
+        holder.name.setText(list.get(position).getName());
         holder.card.setOnClickListener(view -> clickListener.onClickViewOrder(position, data));
     }
 
